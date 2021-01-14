@@ -21,9 +21,12 @@ struct MusicTrack {
 class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var musicTable: UITableView!
+    @IBOutlet var songCountLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     
     public var audioPlayer: AVAudioPlayer!
     public var musicLibraryList: [MusicTrack] = []
+    @IBOutlet weak var shuffleButton: UIButton!
     
     private static let MP3_FILE_EXTENSION = "mp3"
 
@@ -34,6 +37,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelega
         musicTable.register(TrackTableViewCell.nib(), forCellReuseIdentifier: TrackTableViewCell.identifier)
         musicTable.delegate = self
         musicTable.dataSource = self
+        initUiElements()
     }
     
     // Table view functionality
@@ -49,6 +53,21 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelega
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    private func initUiElements() {
+        songCountLabel.text =  "\(musicLibraryList.count) songs"
+        playButton.layer.cornerRadius = 5.0
+        playButton.titleEdgeInsets.left = 10
+        playButton.imageEdgeInsets.left = -10
+        playButton.contentEdgeInsets.top = 10
+        playButton.contentEdgeInsets.bottom = 10
+    
+        shuffleButton.layer.cornerRadius = 5.0
+        shuffleButton.titleEdgeInsets.left = 10
+        shuffleButton.imageEdgeInsets.left = -10
+        shuffleButton.contentEdgeInsets.top = 10
+        shuffleButton.contentEdgeInsets.bottom = 10
     }
 
     // Music load functionality

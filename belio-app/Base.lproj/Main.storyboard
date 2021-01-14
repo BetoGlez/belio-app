@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W5P-kI-BOc">
-                                <rect key="frame" x="0.0" y="165" width="414" height="697"/>
+                                <rect key="frame" x="0.0" y="259" width="414" height="603"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="trackCell" id="kvH-lY-L6g">
@@ -30,41 +31,76 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6NN-av-Qqn" userLabel="Top content Stack View">
-                                <rect key="frame" x="0.0" y="54" width="414" height="91"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6NN-av-Qqn" userLabel="Top content Stack View">
+                                <rect key="frame" x="0.0" y="54" width="414" height="175"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Biblioteca musical" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cc4-MX-J6Z">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37 canciones" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeP-vQ-s9G">
-                                        <rect key="frame" x="0.0" y="30.5" width="414" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-2i-AeH" userLabel="Buttons Stack View">
-                                        <rect key="frame" x="0.0" y="61" width="414" height="30"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="belio-icon" translatesAutoresizingMaskIntoConstraints="NO" id="J0S-0g-2de">
+                                        <rect key="frame" x="192" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Nxb-or-69W"/>
+                                            <constraint firstAttribute="height" constant="30" id="OSd-ZT-72P"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="toK-N1-kPm" userLabel="List Actions Stack View">
+                                        <rect key="frame" x="47" y="61" width="320" height="114"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-3w-bof">
-                                                <rect key="frame" x="0.0" y="0.0" width="228" height="30"/>
-                                                <state key="normal" title="Reproducir"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywm-bj-ZAc">
-                                                <rect key="frame" x="228" y="0.0" width="186" height="30"/>
-                                                <state key="normal" title="Aleatorio"/>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KYK-Yr-ljo" userLabel="List Detail Stack View">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belio music library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cc4-MX-J6Z">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37 songs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeP-vQ-s9G">
+                                                        <rect key="frame" x="0.0" y="29" width="320" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                        <color key="textColor" systemColor="systemPinkColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-2i-AeH" userLabel="Buttons Stack View">
+                                                <rect key="frame" x="0.0" y="67" width="320" height="47"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-3w-bof">
+                                                        <rect key="frame" x="0.0" y="12.5" width="150" height="22"/>
+                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="150" id="Hy0-pf-0HV"/>
+                                                        </constraints>
+                                                        <color key="tintColor" systemColor="systemPinkColor"/>
+                                                        <state key="normal" title="Play">
+                                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                                            <imageReference key="image" image="play.fill" catalog="system" symbolScale="default"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywm-bj-ZAc">
+                                                        <rect key="frame" x="170" y="12.5" width="150" height="22"/>
+                                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="150" id="r8g-c2-rFg"/>
+                                                        </constraints>
+                                                        <color key="tintColor" systemColor="systemPinkColor"/>
+                                                        <state key="normal" title="Shuffle" image="shuffle" catalog="system">
+                                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="dOf-fZ-Jij"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="W5P-kI-BOc" firstAttribute="top" secondItem="6NN-av-Qqn" secondAttribute="bottom" constant="20" id="0y8-bB-PdS"/>
+                            <constraint firstItem="W5P-kI-BOc" firstAttribute="top" secondItem="6NN-av-Qqn" secondAttribute="bottom" constant="30" id="0y8-bB-PdS"/>
                             <constraint firstItem="W5P-kI-BOc" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Fmy-VZ-8SD"/>
                             <constraint firstItem="W5P-kI-BOc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WGM-6a-fbZ"/>
                             <constraint firstItem="6NN-av-Qqn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Wcu-b4-3XZ"/>
@@ -75,6 +111,9 @@
                     </view>
                     <connections>
                         <outlet property="musicTable" destination="W5P-kI-BOc" id="56h-lJ-hkS"/>
+                        <outlet property="playButton" destination="5Ay-3w-bof" id="HSj-Bw-TDh"/>
+                        <outlet property="shuffleButton" destination="Ywm-bj-ZAc" id="mY3-mm-Zmg"/>
+                        <outlet property="songCountLabel" destination="YeP-vQ-s9G" id="Q1j-Qh-Rgd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -83,8 +122,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="belio-icon" width="65.5" height="65.5"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
+        <image name="shuffle" catalog="system" width="128" height="93"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
