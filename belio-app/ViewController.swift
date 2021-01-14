@@ -18,18 +18,40 @@ struct MusicTrack {
     var soundpathURL = URL(string: "")
 }
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var currentSongCoverImgView: UIImageView!
-    let MP3_FILE_EXTENSION = "mp3"
-    var audioPlayer: AVAudioPlayer!
+    @IBOutlet var musicTable: UITableView!
+    
+    public var audioPlayer: AVAudioPlayer!
+    public var musicLibraryList: [MusicTrack] = []
+    
+    private static let MP3_FILE_EXTENSION = "mp3"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loadMusicFromFiles()
+        musicTable.register(TrackTableViewCell.nib(), forCellReuseIdentifier: TrackTableViewCell.identifier)
+        musicTable.delegate = self
+        musicTable.dataSource = self
+    }
+    
+    // Table view functionality
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return musicLibraryList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let musicTrackCell = musicTable.dequeueReusableCell(withIdentifier: TrackTableViewCell.identifier, for: indexPath) as! TrackTableViewCell
+        musicTrackCell.setTrackData(trackTitle: musicLibraryList[indexPath.row].title, trackArtist: musicLibraryList[indexPath.row].artist, trackArtwork: musicLibraryList[indexPath.row].artwork!)
+        return musicTrackCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 
+    // Music load functionality
     private func loadMusicFromFiles() {
         let fileManager = FileManager.default
         // This is th document path, you should store your mp3 files with the complete metadata here
@@ -38,18 +60,13 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
                 
         do {
             let documentsFiles = try fileManager.contentsOfDirectory(atPath: documentsPath.path)
-            let musicFiles = documentsFiles.filter { $0.suffix(3) == MP3_FILE_EXTENSION }
+            let musicFiles = documentsFiles.filter { $0.suffix(3) == ViewController.MP3_FILE_EXTENSION }
             if musicFiles.count > 0 {
-                let musicLibraryList = composeMusicLibraryList(fileTracks: musicFiles, documentsPath: documentsPath)
+                musicLibraryList = composeMusicLibraryList(fileTracks: musicFiles, documentsPath: documentsPath)
                 // Sample random music play in order to test it works
                 let randomTrackPos = Int.random(in: 0..<musicLibraryList.count)
                 if !musicLibraryList[randomTrackPos].soundpathURL!.absoluteString.isEmpty {
                     playSong(soundpathURL: musicLibraryList[randomTrackPos].soundpathURL!)
-                    
-                    if musicLibraryList[randomTrackPos].artwork != nil {
-                        let artworkImg = UIImage(data: musicLibraryList[randomTrackPos].artwork! as Data)
-                        currentSongCoverImgView.image = artworkImg
-                    }
                 }
             } else {
                 print("There are no music files at the moment")
