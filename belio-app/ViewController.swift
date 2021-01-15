@@ -7,16 +7,6 @@
 
 import UIKit
 
-struct MusicTrack {
-    var id = UUID().uuidString
-    var title = ""
-    var artist = ""
-    var album = ""
-    var duration = ""
-    var artwork: NSData? = nil
-    var soundpathURL = URL(string: "")
-}
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var musicTable: UITableView!
@@ -106,8 +96,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let documentsFiles = try fileManager.contentsOfDirectory(atPath: documentsPath.path)
             let musicFiles = documentsFiles.filter { $0.suffix(3) == ViewController.MP3_FILE_EXTENSION }
             if musicFiles.count > 0 {
-                let musicPlayerManager = MusicPlayerManager()
-                musicLibraryList = musicPlayerManager.composeMusicLibraryList(fileTracks: musicFiles, documentsPath: documentsPath)
+                let musicFilesManager = MusicFilesManager()
+                musicLibraryList = musicFilesManager.composeMusicLibraryList(fileTracks: musicFiles, documentsPath: documentsPath)
             } else {
                 print("There are no music files at the moment")
             }

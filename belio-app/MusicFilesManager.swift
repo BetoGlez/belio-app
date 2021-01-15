@@ -1,5 +1,5 @@
 //
-//  MusicPlayerManager.swift
+//  MusicFilesManager.swift
 //  belio-app
 //
 //  Created by Alberto González Hernández on 15/01/21.
@@ -8,23 +8,20 @@
 import Foundation
 import AVFoundation
 
-class MusicPlayerManager {
-    
-    private var audioPlayer: AVAudioPlayer!
+struct MusicTrack {
+    var id = ""
+    var title = ""
+    var artist = ""
+    var album = ""
+    var durationInSeconds: Int = -1
+    var artwork: NSData? = nil
+    var soundpathURL = URL(string: "")
+}
+
+class MusicFilesManager {
     
     public init() {
-        print("Music Player Manager init")
-    }
-    
-    public func playSong(soundpathURL: URL, playerDelegate: AVAudioPlayerDelegate) {
-        audioPlayer = try! AVAudioPlayer(contentsOf: soundpathURL)
-        audioPlayer.volume = 1.0
-        audioPlayer.delegate = playerDelegate
-        if audioPlayer.isPlaying {
-            audioPlayer.stop()
-        }
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+        print("Music Files Manager init")
     }
     
     public func composeMusicLibraryList(fileTracks: [String], documentsPath: URL) -> [MusicTrack] {
@@ -39,7 +36,7 @@ class MusicPlayerManager {
             print("Title: \(musicTrackData.title)")
             print("Artist: \(musicTrackData.artist)")
             print("Album: \(musicTrackData.album)")
-            print("Duration: \(musicTrackData.duration)")
+            print("Duration: \(musicTrackData.durationInSeconds)\n")
             
             musicLibraryList.append(musicTrackData)
         }
@@ -50,9 +47,7 @@ class MusicPlayerManager {
     private func composeMusicTrackData(soundpathURL: URL) -> MusicTrack {
         var musicTrackData: MusicTrack = MusicTrack()
         let playerItem = AVPlayerItem(url: soundpathURL)
-        let songDurationSeconds = Int(round(playerItem.asset.duration.seconds))
-        let (durMin,durSec) = convertSecondsToHoursMinutesSeconds(seconds: songDurationSeconds)
-        musicTrackData.duration = "\(durMin):\(String(durSec).count < 2 ? "0\(durSec)" : String(durSec))"
+        musicTrackData.durationInSeconds = Int(round(playerItem.asset.duration.seconds))
         musicTrackData.soundpathURL = soundpathURL
         let metadataList = playerItem.asset.commonMetadata
         for item in metadataList {
@@ -68,16 +63,12 @@ class MusicPlayerManager {
                         print("Genre: \(auioItemValue)")
                     case "artwork":
                         musicTrackData.artwork = auioItemValue as? NSData
-                        print("Artwork: \(auioItemValue)\n")
                     default:
                         print("Not recognized key: \(auioItemValue)")
                 }
             }
         }
+        musicTrackData.id = "TRK_\(musicTrackData.durationInSeconds)_\(musicTrackData.title.replacingOccurrences(of: " ", with: ""))_\(musicTrackData.album.replacingOccurrences(of: " ", with: ""))"
         return musicTrackData
-    }
-    
-    private func convertSecondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int) {
-      return ((seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }

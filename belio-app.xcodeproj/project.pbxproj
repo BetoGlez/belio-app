@@ -10,20 +10,20 @@
 		D604C9DB25B0CA3A00A2F4BB /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604C9D925B0CA3A00A2F4BB /* TrackTableViewCell.swift */; };
 		D604C9DC25B0CA3A00A2F4BB /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D604C9DA25B0CA3A00A2F4BB /* TrackTableViewCell.xib */; };
 		D604C9DF25B1044900A2F4BB /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604C9DE25B1044900A2F4BB /* MusicPlayerViewController.swift */; };
-		D604C9E225B11AEE00A2F4BB /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604C9E125B11AEE00A2F4BB /* MusicPlayerManager.swift */; };
 		D662A3E825AFA8750063782F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D662A3E725AFA8750063782F /* AppDelegate.swift */; };
 		D662A3EA25AFA8750063782F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D662A3E925AFA8750063782F /* SceneDelegate.swift */; };
 		D662A3EC25AFA8750063782F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D662A3EB25AFA8750063782F /* ViewController.swift */; };
 		D662A3EF25AFA8750063782F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D662A3ED25AFA8750063782F /* Main.storyboard */; };
 		D662A3F125AFA8760063782F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D662A3F025AFA8760063782F /* Assets.xcassets */; };
 		D662A3F425AFA8760063782F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D662A3F225AFA8760063782F /* LaunchScreen.storyboard */; };
+		D6C3686C25B2168000C30EC0 /* MusicFilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C3686B25B2168000C30EC0 /* MusicFilesManager.swift */; };
+		D6FFE62325B23D82001486F9 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FFE62225B23D82001486F9 /* CommonFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D604C9D925B0CA3A00A2F4BB /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		D604C9DA25B0CA3A00A2F4BB /* TrackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
 		D604C9DE25B1044900A2F4BB /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
-		D604C9E125B11AEE00A2F4BB /* MusicPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerManager.swift; sourceTree = "<group>"; };
 		D662A3E425AFA8750063782F /* belio-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "belio-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D662A3E725AFA8750063782F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D662A3E925AFA8750063782F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +32,8 @@
 		D662A3F025AFA8760063782F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D662A3F325AFA8760063782F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D662A3F525AFA8760063782F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6C3686B25B2168000C30EC0 /* MusicFilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicFilesManager.swift; sourceTree = "<group>"; };
+		D6FFE62225B23D82001486F9 /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +76,8 @@
 				D604C9D925B0CA3A00A2F4BB /* TrackTableViewCell.swift */,
 				D604C9DA25B0CA3A00A2F4BB /* TrackTableViewCell.xib */,
 				D604C9DE25B1044900A2F4BB /* MusicPlayerViewController.swift */,
-				D604C9E125B11AEE00A2F4BB /* MusicPlayerManager.swift */,
+				D6C3686B25B2168000C30EC0 /* MusicFilesManager.swift */,
+				D6FFE62225B23D82001486F9 /* CommonFunctions.swift */,
 			);
 			path = "belio-app";
 			sourceTree = "<group>";
@@ -152,9 +155,10 @@
 			files = (
 				D662A3EC25AFA8750063782F /* ViewController.swift in Sources */,
 				D662A3E825AFA8750063782F /* AppDelegate.swift in Sources */,
+				D6FFE62325B23D82001486F9 /* CommonFunctions.swift in Sources */,
+				D6C3686C25B2168000C30EC0 /* MusicFilesManager.swift in Sources */,
 				D604C9DF25B1044900A2F4BB /* MusicPlayerViewController.swift in Sources */,
 				D662A3EA25AFA8750063782F /* SceneDelegate.swift in Sources */,
-				D604C9E225B11AEE00A2F4BB /* MusicPlayerManager.swift in Sources */,
 				D604C9DB25B0CA3A00A2F4BB /* TrackTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +306,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A78KV5NZ23;
 				INFOPLIST_FILE = "belio-app/Info.plist";
@@ -311,6 +316,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertogonzalezhernandez.belio-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -321,6 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A78KV5NZ23;
 				INFOPLIST_FILE = "belio-app/Info.plist";
@@ -330,6 +337,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.albertogonzalezhernandez.belio-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
