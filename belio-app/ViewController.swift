@@ -61,6 +61,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return musicTrackCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showTrackDetail", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
@@ -68,11 +72,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
         if segue.destination.view != nil {
-            //let pos = musicTable.indexPathForSelectedRow!.row
+            let pos = musicTable.indexPathForSelectedRow!.row
             let musicPlayerViewCtrl = segue.destination as! MusicPlayerViewController
-            musicPlayerViewCtrl.currentTrack = musicLibraryList[1]
+            musicPlayerViewCtrl.currentTrack = musicLibraryList[pos]
+            musicTable.deselectRow(at: musicTable.indexPathForSelectedRow!, animated: true)
         }
     }
     

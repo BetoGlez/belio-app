@@ -75,9 +75,6 @@
                                                             <color key="titleColor" systemColor="systemPinkColor"/>
                                                             <imageReference key="image" image="play.fill" catalog="system" symbolScale="default"/>
                                                         </state>
-                                                        <connections>
-                                                            <segue destination="mze-19-Kr9" kind="show" id="DqJ-MP-XH2"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywm-bj-ZAc">
                                                         <rect key="frame" x="170" y="12.5" width="150" height="22"/>
@@ -118,6 +115,7 @@
                         <outlet property="playButton" destination="5Ay-3w-bof" id="HSj-Bw-TDh"/>
                         <outlet property="shuffleButton" destination="Ywm-bj-ZAc" id="mY3-mm-Zmg"/>
                         <outlet property="songCountLabel" destination="YeP-vQ-s9G" id="Q1j-Qh-Rgd"/>
+                        <segue destination="mze-19-Kr9" kind="show" identifier="showTrackDetail" id="NZp-pj-ZHO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

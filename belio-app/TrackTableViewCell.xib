@@ -3,7 +3,9 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="-9" translatesAutoresizingMaskIntoConstraints="NO" id="HbM-0M-XsV">
-                        <rect key="frame" x="70" y="0.0" width="241" height="45"/>
+                        <rect key="frame" x="70" y="0.0" width="201.5" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzM-gl-qgR">
                                 <rect key="frame" x="0.0" y="0.0" width="65.5" height="27"/>
@@ -40,14 +42,23 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D6-L4-XOa" userLabel="detailButton">
+                        <rect key="frame" x="286.5" y="11.5" width="14.5" height="22"/>
+                        <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                        <state key="normal">
+                            <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="HbM-0M-XsV" secondAttribute="bottom" id="4DK-3j-7f4"/>
-                    <constraint firstAttribute="trailing" secondItem="HbM-0M-XsV" secondAttribute="trailing" constant="10" id="GY8-OF-PEj"/>
+                    <constraint firstItem="2D6-L4-XOa" firstAttribute="leading" secondItem="HbM-0M-XsV" secondAttribute="trailing" constant="15" id="Moy-Q1-jH8"/>
                     <constraint firstItem="Zbe-IW-iFo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="NE9-3P-1cH"/>
                     <constraint firstItem="Zbe-IW-iFo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OPp-vr-2qU"/>
                     <constraint firstItem="HbM-0M-XsV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bxw-Vq-NhN"/>
                     <constraint firstItem="HbM-0M-XsV" firstAttribute="leading" secondItem="Zbe-IW-iFo" secondAttribute="trailing" constant="15" id="gqA-vt-7C8"/>
+                    <constraint firstAttribute="trailing" secondItem="2D6-L4-XOa" secondAttribute="trailing" constant="20" id="lr4-O3-YZg"/>
+                    <constraint firstItem="2D6-L4-XOa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="o8q-5Y-QMx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -59,4 +70,10 @@
             <point key="canvasLocation" x="189.13043478260872" y="88.058035714285708"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
