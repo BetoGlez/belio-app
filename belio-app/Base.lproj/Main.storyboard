@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HUY-cT-kNZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W5P-kI-BOc">
-                                <rect key="frame" x="0.0" y="259" width="414" height="603"/>
+                                <rect key="frame" x="0.0" y="303" width="414" height="559"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="trackCell" id="kvH-lY-L6g">
@@ -32,7 +32,7 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6NN-av-Qqn" userLabel="Top content Stack View">
-                                <rect key="frame" x="0.0" y="54" width="414" height="175"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="175"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="belio-icon" translatesAutoresizingMaskIntoConstraints="NO" id="J0S-0g-2de">
                                         <rect key="frame" x="192" y="0.0" width="30" height="30"/>
@@ -75,6 +75,9 @@
                                                             <color key="titleColor" systemColor="systemPinkColor"/>
                                                             <imageReference key="image" image="play.fill" catalog="system" symbolScale="default"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="mze-19-Kr9" kind="show" id="DqJ-MP-XH2"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywm-bj-ZAc">
                                                         <rect key="frame" x="170" y="12.5" width="150" height="22"/>
@@ -109,6 +112,7 @@
                             <constraint firstItem="W5P-kI-BOc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nbi-Zs-XKh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Xy0-Pw-jTM"/>
                     <connections>
                         <outlet property="musicTable" destination="W5P-kI-BOc" id="56h-lJ-hkS"/>
                         <outlet property="playButton" destination="5Ay-3w-bof" id="HSj-Bw-TDh"/>
@@ -118,13 +122,172 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="713.04347826086962" y="90.401785714285708"/>
+        </scene>
+        <!--Music Player View Controller-->
+        <scene sceneID="CU8-A1-JcZ">
+            <objects>
+                <viewController id="mze-19-Kr9" customClass="MusicPlayerViewController" customModule="belio_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RwT-Dw-RVq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="belio-icon" translatesAutoresizingMaskIntoConstraints="NO" id="3Y0-cN-qhO">
+                                <rect key="frame" x="192" y="98" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Hro-Lq-Z5V"/>
+                                    <constraint firstAttribute="height" constant="30" id="djx-LS-upB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EHJ-wj-EPJ">
+                                <rect key="frame" x="20" y="158" width="374" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="sAe-0S-3s0"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="3Op-Zp-Eln" userLabel="Player Info Stack View">
+                                <rect key="frame" x="20" y="478" width="374" height="354"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ri1-p7-eJa" userLabel="Track Info Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="61"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n57-Pk-wTR">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="31.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="-- --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Qs-s1U">
+                                                <rect key="frame" x="0.0" y="34.5" width="374" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dxI-KL-poH" userLabel="Progress Stack View">
+                                        <rect key="frame" x="0.0" y="126" width="374" height="34.5"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CD2-fy-wE1">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="4"/>
+                                                <color key="progressTintColor" systemColor="opaqueSeparatorColor"/>
+                                            </progressView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8RX-UP-r96">
+                                                <rect key="frame" x="0.0" y="14" width="374" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJX-cS-i8E" userLabel="currentTime">
+                                                        <rect key="frame" x="0.0" y="0.0" width="331" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-5:55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQA-Sq-9TT" userLabel="remainingTime">
+                                                        <rect key="frame" x="331" y="0.0" width="43" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="m5V-Ze-zYC" userLabel="Controlls Stack View">
+                                        <rect key="frame" x="0.0" y="225" width="374" height="34"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpz-YQ-CsX" userLabel="previousTrackBtn">
+                                                <rect key="frame" x="0.0" y="2.5" width="124.5" height="29.5"/>
+                                                <state key="normal" image="backward.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNC-uk-Y3R" userLabel="pauseBtn">
+                                                <rect key="frame" x="124.5" y="0.0" width="125" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" image="pause.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYI-41-RdM" userLabel="nextTrackBtn">
+                                                <rect key="frame" x="249.5" y="2.5" width="124.5" height="29.5"/>
+                                                <state key="normal" image="forward.fill" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-HY-p61" userLabel="Volume Stack View">
+                                        <rect key="frame" x="0.0" y="324" width="374" height="30"/>
+                                        <subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zYd-zv-ptW">
+                                                <rect key="frame" x="-2" y="0.0" width="378" height="31"/>
+                                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                                <imageReference key="minimumValueImage" image="speaker.fill" catalog="system" symbolScale="small"/>
+                                                <imageReference key="maximumValueImage" image="speaker.wave.3.fill" catalog="system" symbolScale="small"/>
+                                                <color key="minimumTrackTintColor" systemColor="opaqueSeparatorColor"/>
+                                            </slider>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1L9-Rb-U7v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="3Op-Zp-Eln" secondAttribute="trailing" constant="20" id="1vQ-FC-a2Y"/>
+                            <constraint firstItem="EHJ-wj-EPJ" firstAttribute="top" secondItem="3Y0-cN-qhO" secondAttribute="bottom" constant="30" id="OAZ-wO-NrJ"/>
+                            <constraint firstItem="EHJ-wj-EPJ" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="OLv-1n-vva"/>
+                            <constraint firstItem="3Op-Zp-Eln" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="PcX-io-tEZ"/>
+                            <constraint firstItem="3Op-Zp-Eln" firstAttribute="top" secondItem="EHJ-wj-EPJ" secondAttribute="bottom" constant="20" id="QKU-e3-SOS"/>
+                            <constraint firstItem="3Y0-cN-qhO" firstAttribute="top" secondItem="1L9-Rb-U7v" secondAttribute="top" constant="10" id="TFR-pl-nfo"/>
+                            <constraint firstItem="3Y0-cN-qhO" firstAttribute="centerX" secondItem="RwT-Dw-RVq" secondAttribute="centerX" id="VUc-UI-l4y"/>
+                            <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="EHJ-wj-EPJ" secondAttribute="trailing" constant="20" id="cH3-ph-BdU"/>
+                            <constraint firstItem="1L9-Rb-U7v" firstAttribute="bottom" secondItem="3Op-Zp-Eln" secondAttribute="bottom" constant="30" id="cU1-Tt-koY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xz2-97-5nA"/>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="mJX-cS-i8E" id="A2b-xf-grY"/>
+                        <outlet property="musicVolumeSlider" destination="zYd-zv-ptW" id="cZn-Zn-YCY"/>
+                        <outlet property="remainingTimeLabel" destination="HQA-Sq-9TT" id="07t-y0-Aun"/>
+                        <outlet property="timeProgressView" destination="CD2-fy-wE1" id="Ord-lT-bdo"/>
+                        <outlet property="trackArtistLabel" destination="aYg-Qs-s1U" id="8Dg-Nj-jdn"/>
+                        <outlet property="trackArtworkImgView" destination="EHJ-wj-EPJ" id="g95-BU-p17"/>
+                        <outlet property="trackTitleLabel" destination="n57-Pk-wTR" id="9t9-z5-9Dt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Eb-7y-qoJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1645" y="90"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U3l-d6-rWY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HUY-cT-kNZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4WR-CF-Zy6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ny8-Ze-m4o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="srX-x7-a0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-197.10144927536234" y="90.401785714285708"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="systemPinkColor"/>
     <resources>
+        <image name="backward.fill" catalog="system" width="128" height="79"/>
         <image name="belio-icon" width="65.5" height="65.5"/>
+        <image name="forward.fill" catalog="system" width="128" height="79"/>
+        <image name="pause.fill" catalog="system" width="116" height="128"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="shuffle" catalog="system" width="128" height="93"/>
+        <image name="speaker.fill" catalog="system" width="128" height="128"/>
+        <image name="speaker.wave.3.fill" catalog="system" width="128" height="86"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

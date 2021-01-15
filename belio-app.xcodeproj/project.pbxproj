@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D604C9DB25B0CA3A00A2F4BB /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604C9D925B0CA3A00A2F4BB /* TrackTableViewCell.swift */; };
 		D604C9DC25B0CA3A00A2F4BB /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D604C9DA25B0CA3A00A2F4BB /* TrackTableViewCell.xib */; };
+		D604C9DF25B1044900A2F4BB /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604C9DE25B1044900A2F4BB /* MusicPlayerViewController.swift */; };
+		D604C9E225B11AEE00A2F4BB /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604C9E125B11AEE00A2F4BB /* MusicPlayerManager.swift */; };
 		D662A3E825AFA8750063782F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D662A3E725AFA8750063782F /* AppDelegate.swift */; };
 		D662A3EA25AFA8750063782F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D662A3E925AFA8750063782F /* SceneDelegate.swift */; };
 		D662A3EC25AFA8750063782F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D662A3EB25AFA8750063782F /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		D604C9D925B0CA3A00A2F4BB /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		D604C9DA25B0CA3A00A2F4BB /* TrackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
+		D604C9DE25B1044900A2F4BB /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
+		D604C9E125B11AEE00A2F4BB /* MusicPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerManager.swift; sourceTree = "<group>"; };
 		D662A3E425AFA8750063782F /* belio-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "belio-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D662A3E725AFA8750063782F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D662A3E925AFA8750063782F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				D662A3F525AFA8760063782F /* Info.plist */,
 				D604C9D925B0CA3A00A2F4BB /* TrackTableViewCell.swift */,
 				D604C9DA25B0CA3A00A2F4BB /* TrackTableViewCell.xib */,
+				D604C9DE25B1044900A2F4BB /* MusicPlayerViewController.swift */,
+				D604C9E125B11AEE00A2F4BB /* MusicPlayerManager.swift */,
 			);
 			path = "belio-app";
 			sourceTree = "<group>";
@@ -146,7 +152,9 @@
 			files = (
 				D662A3EC25AFA8750063782F /* ViewController.swift in Sources */,
 				D662A3E825AFA8750063782F /* AppDelegate.swift in Sources */,
+				D604C9DF25B1044900A2F4BB /* MusicPlayerViewController.swift in Sources */,
 				D662A3EA25AFA8750063782F /* SceneDelegate.swift in Sources */,
+				D604C9E225B11AEE00A2F4BB /* MusicPlayerManager.swift in Sources */,
 				D604C9DB25B0CA3A00A2F4BB /* TrackTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
