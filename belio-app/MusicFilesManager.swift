@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 struct MusicTrack {
     var id = ""
@@ -22,6 +23,7 @@ struct MusicTrack {
 class MusicFilesManager {
     
     private let commonFunctions = CommonFunctions();
+    private var unknownTrackId: Int = 1;
     
     public init() {
         print("Music Files Manager init")
@@ -65,6 +67,23 @@ class MusicFilesManager {
             }
         }
         musicTrackData.id = commonFunctions.composeTrackId(musicTrackData: musicTrackData)
-        return musicTrackData
+        return completeTrackPropertiesIfMissing(musicTrackData: musicTrackData)
+    }
+    
+    private func completeTrackPropertiesIfMissing(musicTrackData: MusicTrack) -> MusicTrack {
+        var newMusicTrackData = musicTrackData
+        newMusicTrackData.title = commonFunctions.isStringEmpty(text: musicTrackData.title) ? "Unknown Song \(unknownTrackId)" :
+            musicTrackData.title
+        unknownTrackId = commonFunctions.isStringEmpty(text: musicTrackData.title) ? unknownTrackId + 1 : unknownTrackId
+        newMusicTrackData.artist = commonFunctions.isStringEmpty(text: musicTrackData.artist) ? "Unknown Artist" : musicTrackData.artist
+        newMusicTrackData.album = commonFunctions.isStringEmpty(text: musicTrackData.album) ? "Unknown Album" : musicTrackData.album
+        if musicTrackData.artwork == nil {
+            let artworkImg: UIImage = UIImage(named: "default-album-cover")!
+            newMusicTrackData.artwork = artworkImg.pngData() as NSData?
+        }
+        if commonFunctions.isStringEmpty(text: musicTrackData.title) || commonFunctions.isStringEmpty(text: musicTrackData.album) {
+            newMusicTrackData.id = commonFunctions.composeTrackId(musicTrackData: newMusicTrackData)
+        }
+        return newMusicTrackData
     }
 }

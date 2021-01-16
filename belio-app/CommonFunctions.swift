@@ -38,6 +38,10 @@ class CommonFunctions {
         return (String((seconds % 3600) / 60), (String(sec).count < 2 ? "0\(sec)" : String(sec)))
     }
     
+    public func isStringEmpty(text: String) -> Bool {
+        return text.replacingOccurrences(of: " ", with: "").isEmpty
+    }
+    
     public func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
 

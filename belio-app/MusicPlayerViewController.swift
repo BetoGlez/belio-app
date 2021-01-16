@@ -27,6 +27,7 @@ class MusicPlayerViewController: UIViewController {
     @IBOutlet weak var nextTrackButton: UIButton!
     @IBOutlet weak var previousTrackButton: UIButton!
     @IBOutlet weak var musicVolumeSlider: UISlider!
+    @IBOutlet weak var searchLyricsButton: UIButton!
     
     public var currentTrack: MusicTrack = MusicTrack();
     
@@ -145,6 +146,7 @@ class MusicPlayerViewController: UIViewController {
         self.playPauseButton.alpha = alphaValue * 0.9
         self.nextTrackButton.alpha = alphaValue * 0.9
         self.previousTrackButton.alpha = alphaValue * 0.9
+        self.searchLyricsButton.alpha = alphaValue * 0.9
     }
     
     private func changeTrack(option: String) {

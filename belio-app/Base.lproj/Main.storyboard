@@ -68,7 +68,7 @@
                                                         <rect key="frame" x="0.0" y="17.5" width="125" height="22"/>
                                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="125" id="Hy0-pf-0HV"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="Hy0-pf-0HV"/>
                                                         </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Play">
@@ -83,7 +83,7 @@
                                                         <rect key="frame" x="145" y="17.5" width="125" height="22"/>
                                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="125" id="r8g-c2-rFg"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="r8g-c2-rFg"/>
                                                         </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Shuffle" image="shuffle" catalog="system">
@@ -137,13 +137,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EHJ-wj-EPJ">
-                                <rect key="frame" x="20" y="118" width="374" height="300"/>
+                                <rect key="frame" x="20" y="108" width="374" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="sAe-0S-3s0"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="3Op-Zp-Eln" userLabel="Player Info Stack View">
-                                <rect key="frame" x="20" y="438" width="374" height="394"/>
+                                <rect key="frame" x="20" y="428" width="374" height="364"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ri1-p7-eJa" userLabel="Track Info Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="61"/>
@@ -163,7 +163,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dxI-KL-poH" userLabel="Progress Stack View">
-                                        <rect key="frame" x="0.0" y="130.5" width="374" height="60.5"/>
+                                        <rect key="frame" x="0.0" y="120.5" width="374" height="60.5"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WzK-Xc-pGz">
                                                 <rect key="frame" x="-2" y="0.0" width="378" height="31"/>
@@ -194,7 +194,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="m5V-Ze-zYC" userLabel="Controlls Stack View">
-                                        <rect key="frame" x="0.0" y="260.5" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="240.5" width="374" height="34"/>
                                         <subviews>
                                             <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpz-YQ-CsX" userLabel="previousTrackBtn">
                                                 <rect key="frame" x="0.0" y="2.5" width="124.5" height="29.5"/>
@@ -227,7 +227,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpr-HY-p61" userLabel="Volume Stack View">
-                                        <rect key="frame" x="0.0" y="364" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="334" width="374" height="30"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zYd-zv-ptW">
                                                 <rect key="frame" x="-2" y="0.0" width="378" height="31"/>
@@ -243,17 +243,23 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urc-ss-8lH">
+                                <rect key="frame" x="163" y="822" width="88" height="30"/>
+                                <state key="normal" title="Search lyrics"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1L9-Rb-U7v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="3Op-Zp-Eln" secondAttribute="trailing" constant="20" id="1vQ-FC-a2Y"/>
+                            <constraint firstItem="Urc-ss-8lH" firstAttribute="centerX" secondItem="RwT-Dw-RVq" secondAttribute="centerX" id="BZT-mG-vhz"/>
+                            <constraint firstItem="Urc-ss-8lH" firstAttribute="top" secondItem="3Op-Zp-Eln" secondAttribute="bottom" constant="30" id="BeR-GL-5Bq"/>
                             <constraint firstItem="EHJ-wj-EPJ" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="OLv-1n-vva"/>
                             <constraint firstItem="3Op-Zp-Eln" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="PcX-io-tEZ"/>
                             <constraint firstItem="3Op-Zp-Eln" firstAttribute="top" secondItem="EHJ-wj-EPJ" secondAttribute="bottom" constant="20" id="QKU-e3-SOS"/>
                             <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="EHJ-wj-EPJ" secondAttribute="trailing" constant="20" id="cH3-ph-BdU"/>
-                            <constraint firstItem="1L9-Rb-U7v" firstAttribute="bottom" secondItem="3Op-Zp-Eln" secondAttribute="bottom" constant="30" id="cU1-Tt-koY"/>
-                            <constraint firstItem="EHJ-wj-EPJ" firstAttribute="top" secondItem="1L9-Rb-U7v" secondAttribute="top" constant="30" id="hSQ-XU-BH1"/>
+                            <constraint firstItem="1L9-Rb-U7v" firstAttribute="bottom" secondItem="Urc-ss-8lH" secondAttribute="bottom" constant="10" id="cU1-Tt-koY"/>
+                            <constraint firstItem="EHJ-wj-EPJ" firstAttribute="top" secondItem="1L9-Rb-U7v" secondAttribute="top" constant="20" id="hSQ-XU-BH1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xz2-97-5nA"/>
@@ -264,6 +270,7 @@
                         <outlet property="playPauseButton" destination="JNC-uk-Y3R" id="Ns0-Vf-swp"/>
                         <outlet property="previousTrackButton" destination="rpz-YQ-CsX" id="K7E-aC-hAF"/>
                         <outlet property="remainingTimeLabel" destination="HQA-Sq-9TT" id="07t-y0-Aun"/>
+                        <outlet property="searchLyricsButton" destination="Urc-ss-8lH" id="UvJ-NZ-clb"/>
                         <outlet property="timeProgressSlider" destination="WzK-Xc-pGz" id="Zna-Qj-gu4"/>
                         <outlet property="trackArtistLabel" destination="aYg-Qs-s1U" id="8Dg-Nj-jdn"/>
                         <outlet property="trackArtworkImgView" destination="EHJ-wj-EPJ" id="g95-BU-p17"/>
@@ -299,7 +306,7 @@
     <color key="tintColor" systemColor="systemPinkColor"/>
     <resources>
         <image name="backward.fill" catalog="system" width="128" height="79"/>
-        <image name="belio-icon" width="65.5" height="65.5"/>
+        <image name="belio-icon" width="66" height="65.5"/>
         <image name="forward.fill" catalog="system" width="128" height="79"/>
         <image name="pause.fill" catalog="system" width="116" height="128"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
