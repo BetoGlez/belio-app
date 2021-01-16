@@ -7,15 +7,15 @@
 
 import UIKit
 
+var musicLibraryList: [MusicTrack] = []
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var musicTable: UITableView!
     @IBOutlet var songCountLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var shuffleButton: UIButton!
-    
-    public var musicLibraryList: [MusicTrack] = []
-    
+        
     private static let MP3_FILE_EXTENSION = "mp3"
 
     override func viewDidLoad() {

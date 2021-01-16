@@ -9,6 +9,29 @@ import Foundation
 import UIKit
 
 class CommonFunctions {
+    
+    public func composeTrackId(musicTrackData: MusicTrack) -> String {
+        return "TRK_\(musicTrackData.durationInSeconds)_\(musicTrackData.title.replacingOccurrences(of: " ", with: ""))_\(musicTrackData.album.replacingOccurrences(of: " ", with: ""))"
+    }
+    
+    public func getNewTrack(currentTrack: MusicTrack, option: String) -> MusicTrack {
+        let currentTrackIndex = musicLibraryList.firstIndex(where: { $0.id == currentTrack.id })!
+        var newTrackIndex = 0
+        if option == "next" {
+            if currentTrackIndex >= musicLibraryList.count - 1 {
+                newTrackIndex = 0
+            } else {
+                newTrackIndex = currentTrackIndex + 1
+            }
+        } else if option == "previous" {
+            if currentTrackIndex <= 0 {
+                newTrackIndex = musicLibraryList.count - 1
+            } else {
+                newTrackIndex = currentTrackIndex - 1
+            }
+        }
+        return musicLibraryList[newTrackIndex]
+    }
         
     public func convertSecondsToMinutesSeconds (seconds : Int) -> (String, String) {
         let sec = (seconds % 3600) % 60

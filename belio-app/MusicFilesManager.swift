@@ -20,6 +20,8 @@ struct MusicTrack {
 
 class MusicFilesManager {
     
+    private let commonFunctions = CommonFunctions();
+    
     public init() {
         print("Music Files Manager init")
     }
@@ -68,7 +70,7 @@ class MusicFilesManager {
                 }
             }
         }
-        musicTrackData.id = "TRK_\(musicTrackData.durationInSeconds)_\(musicTrackData.title.replacingOccurrences(of: " ", with: ""))_\(musicTrackData.album.replacingOccurrences(of: " ", with: ""))"
+        musicTrackData.id = commonFunctions.composeTrackId(musicTrackData: musicTrackData)
         return musicTrackData
     }
 }
