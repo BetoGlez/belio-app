@@ -75,6 +75,9 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <imageReference key="image" image="play.fill" catalog="system" symbolScale="default"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="mze-19-Kr9" kind="show" identifier="reproduceFromStartSegue" id="xR9-1H-Fxa"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywm-bj-ZAc">
                                                         <rect key="frame" x="145" y="17.5" width="125" height="22"/>
@@ -86,6 +89,9 @@
                                                         <state key="normal" title="Shuffle" image="shuffle" catalog="system">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="mze-19-Kr9" kind="show" identifier="reproduceShuffleSegue" id="2yp-DU-Hc8"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -279,6 +285,9 @@
             <point key="canvasLocation" x="-197.10144927536234" y="90.401785714285708"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="2yp-DU-Hc8"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemPinkColor"/>
     <resources>
         <image name="backward.fill" catalog="system" width="128" height="79"/>

@@ -63,10 +63,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if segue.destination.view != nil {
-            let pos = musicTable.indexPathForSelectedRow!.row
+            var pos = -1
+            switch segue.identifier {
+                case "showTrackDetail":
+                    pos = musicTable.indexPathForSelectedRow!.row
+                    musicTable.deselectRow(at: musicTable.indexPathForSelectedRow!, animated: true)
+                case "reproduceFromStartSegue":
+                    pos = 0
+                case "reproduceShuffleSegue":
+                    pos = Int.random(in: 0..<musicLibraryList.count)
+                default:
+                    pos = 0
+            }
+            
             let musicPlayerViewCtrl = segue.destination as! MusicPlayerViewController
             musicPlayerViewCtrl.currentTrack = musicLibraryList[pos]
-            musicTable.deselectRow(at: musicTable.indexPathForSelectedRow!, animated: true)
         }
     }
     
