@@ -13,6 +13,7 @@ struct MusicTrack {
     var title = ""
     var artist = ""
     var album = ""
+    var genre = ""
     var durationInSeconds: Int = -1
     var artwork: NSData? = nil
     var soundpathURL = URL(string: "")
@@ -32,13 +33,6 @@ class MusicFilesManager {
         for trackFileName in fileTracks {
             let trackPathURL: URL = documentsPath.appendingPathComponent(trackFileName)
             let musicTrackData: MusicTrack = composeMusicTrackData(soundpathURL: trackPathURL)
-            
-            // TODO: Test purposes, remove this once list is implemented
-            print("Id: \(musicTrackData.id)")
-            print("Title: \(musicTrackData.title)")
-            print("Artist: \(musicTrackData.artist)")
-            print("Album: \(musicTrackData.album)")
-            print("Duration: \(musicTrackData.durationInSeconds)\n")
             
             musicLibraryList.append(musicTrackData)
         }
@@ -62,7 +56,7 @@ class MusicFilesManager {
                     case "albumName":
                         musicTrackData.album = auioItemValue as! String
                     case "type":
-                        print("Genre: \(auioItemValue)")
+                        musicTrackData.genre = auioItemValue as! String
                     case "artwork":
                         musicTrackData.artwork = auioItemValue as? NSData
                     default:

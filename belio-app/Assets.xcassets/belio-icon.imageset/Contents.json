@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "belio-icon.png",
+      "filename" : "belio-logo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "belio-icon@2x.png",
+      "filename" : "belio-logo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "belio-icon@3x.png",
+      "filename" : "belio-logo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

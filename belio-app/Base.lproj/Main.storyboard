@@ -169,7 +169,9 @@
                                                 <rect key="frame" x="-2" y="0.0" width="378" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="opaqueSeparatorColor"/>
                                                 <connections>
-                                                    <action selector="setCurrentTrackTime:" destination="mze-19-Kr9" eventType="valueChanged" id="HMx-mU-TaS"/>
+                                                    <action selector="onEndChangingCurrentTrackTime:" destination="mze-19-Kr9" eventType="touchUpInside" id="CJg-ds-loR"/>
+                                                    <action selector="onStartChangingCurrentTrackTime:" destination="mze-19-Kr9" eventType="touchDown" id="23z-mc-IXC"/>
+                                                    <action selector="setCurrentTrackTime:" destination="mze-19-Kr9" eventType="valueChanged" id="4Bx-bX-yw1"/>
                                                 </connections>
                                             </slider>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8RX-UP-r96">

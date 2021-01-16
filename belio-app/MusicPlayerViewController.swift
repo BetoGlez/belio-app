@@ -34,6 +34,7 @@ class MusicPlayerViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUiElementsAlpha(alphaValue: 0)
+        musicVolumeSlider.value = MusicPlayerViewController.INITIAL_VOLUME_SLIDER
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,7 +58,7 @@ class MusicPlayerViewController: UIViewController {
         do {
             let playerItem = AVPlayerItem(url: currentTrackData.soundpathURL!)
             audioPlayer = AVPlayer(playerItem: playerItem)
-            audioPlayer.volume = MusicPlayerViewController.INITIAL_VOLUME_SLIDER
+            audioPlayer.volume = musicVolumeSlider.value
             
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(AVAudioSession.Category.playback, options: [AVAudioSession.CategoryOptions.mixWithOthers])
@@ -70,7 +71,7 @@ class MusicPlayerViewController: UIViewController {
     }
     
     private func addPeriodicTimeObserver(currentTrackData: MusicTrack) {
-        // Notify every half second
+        // Notify every second
         let timeScale = CMTimeScale(NSEC_PER_SEC)
         let time = CMTime(seconds: 1, preferredTimescale: timeScale)
 
@@ -89,6 +90,9 @@ class MusicPlayerViewController: UIViewController {
         currentTimeLabel.text = "\(currMinutes):\(currSecs)"
         remainingTimeLabel.text = "-\(remMinutes):\(remSecs)"
         timeProgressSlider.value = Float(currentTimeInSeconds) / Float(currentTrackData.durationInSeconds)
+        if currentTimeInSeconds >= currentTrackData.durationInSeconds && isPlaying {
+            changeTrack(option: "next")
+        }
     }
     
     private func removePeriodicTimeObserver() {
@@ -108,7 +112,6 @@ class MusicPlayerViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.setUiElementsAlpha(alphaValue: 1)
         }
-        musicVolumeSlider.value = MusicPlayerViewController.INITIAL_VOLUME_SLIDER
     }
     
     private func playTrack() {
@@ -144,7 +147,16 @@ class MusicPlayerViewController: UIViewController {
         self.previousTrackButton.alpha = alphaValue * 0.9
     }
     
-    private func prepareChangeTrack(newCurrentTrack: MusicTrack) {
+    private func changeTrack(option: String) {
+        var newCurrentTrack: MusicTrack;
+        if option == "next" {
+            newCurrentTrack = commonFunctions.getNewTrack(currentTrack: currentTrack, option: "next")
+        } else {
+            // Previous option
+            newCurrentTrack = commonFunctions.getNewTrack(currentTrack: currentTrack, option: "previous")
+        }
+        
+        // UI Fade
         self.trackArtworkImgView.alpha = 0
         self.trackTitleLabel.alpha = 0
         self.trackArtistLabel.alpha = 0
@@ -152,11 +164,15 @@ class MusicPlayerViewController: UIViewController {
         audioPlayer.pause()
         removePeriodicTimeObserver()
         currentTrack = newCurrentTrack
+        
+        // UI Fade
         UIView.animate(withDuration: 0.3) {
             self.trackArtworkImgView.alpha = 1
             self.trackTitleLabel.alpha = 1
             self.trackArtistLabel.alpha = 1
         }
+        
+        initMusicPlayerData(currentTrackData: newCurrentTrack)
     }
     
     @IBAction func togglePlayPause(_ sender: UIButton) {
@@ -168,15 +184,11 @@ class MusicPlayerViewController: UIViewController {
     }
     
     @IBAction func changeNextTrack(_ sender: UIButton) {
-        let nextTrack = commonFunctions.getNewTrack(currentTrack: currentTrack, option: "next")
-        prepareChangeTrack(newCurrentTrack: nextTrack)
-        initMusicPlayerData(currentTrackData: nextTrack)
+        changeTrack(option: "next")
     }
     
     @IBAction func changePreviousTrack(_ sender: UIButton) {
-        let previousTrack = commonFunctions.getNewTrack(currentTrack: currentTrack, option: "previous")
-        prepareChangeTrack(newCurrentTrack: previousTrack)
-        initMusicPlayerData(currentTrackData: previousTrack)
+        changeTrack(option: "previous")
     }
 
     @IBAction func changeVolumeSlider(_ sender: UISlider) {
@@ -187,5 +199,13 @@ class MusicPlayerViewController: UIViewController {
         let newCurrentTimeSeconds = Float64(sender.value) * Float64(currentTrack.durationInSeconds)
         let newCurrentTime = CMTimeMakeWithSeconds(newCurrentTimeSeconds, preferredTimescale: audioPlayer.currentTime().timescale)
         audioPlayer.seek(to: newCurrentTime)
+    }
+    
+    @IBAction func onStartChangingCurrentTrackTime(_ sender: UISlider) {
+        pauseTrack()
+    }
+    
+    @IBAction func onEndChangingCurrentTrackTime(_ sender: UISlider) {
+        playTrack()
     }
 }
