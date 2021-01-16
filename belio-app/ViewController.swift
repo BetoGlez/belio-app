@@ -75,14 +75,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         playButton.layer.cornerRadius = 5.0
         playButton.titleEdgeInsets.left = 10
         playButton.imageEdgeInsets.left = -10
-        playButton.contentEdgeInsets.top = 10
-        playButton.contentEdgeInsets.bottom = 10
+        playButton.contentEdgeInsets.top = 5
+        playButton.contentEdgeInsets.bottom = 5
     
         shuffleButton.layer.cornerRadius = 5.0
         shuffleButton.titleEdgeInsets.left = 10
         shuffleButton.imageEdgeInsets.left = -10
-        shuffleButton.contentEdgeInsets.top = 10
-        shuffleButton.contentEdgeInsets.bottom = 10
+        shuffleButton.contentEdgeInsets.top = 5
+        shuffleButton.contentEdgeInsets.bottom = 5
     }
 
     // Music load functionality

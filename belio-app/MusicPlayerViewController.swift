@@ -20,18 +20,20 @@ class MusicPlayerViewController: UIViewController {
     @IBOutlet weak var trackArtworkImgView: UIImageView!
     @IBOutlet weak var trackTitleLabel: UILabel!
     @IBOutlet weak var trackArtistLabel: UILabel!
-    @IBOutlet weak var timeProgressView: UIProgressView!
+    @IBOutlet weak var timeProgressSlider: UISlider!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var nextTrackButton: UIButton!
+    @IBOutlet weak var previousTrackButton: UIButton!
     @IBOutlet weak var musicVolumeSlider: UISlider!
     
     public var currentTrack: MusicTrack = MusicTrack();
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        setUiElementsAlpha(alphaValue: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +88,7 @@ class MusicPlayerViewController: UIViewController {
         let (remMinutes,remSecs) = commonFunctions.convertSecondsToMinutesSeconds(seconds: currentTrack.durationInSeconds - currentTimeInSeconds)
         currentTimeLabel.text = "\(currMinutes):\(currSecs)"
         remainingTimeLabel.text = "-\(remMinutes):\(remSecs)"
-        timeProgressView.progress = Float(currentTimeInSeconds) / Float(currentTrack.durationInSeconds)
+        timeProgressSlider.value = Float(currentTimeInSeconds) / Float(currentTrack.durationInSeconds)
     }
     
     private func removePeriodicTimeObserver() {
@@ -101,6 +103,11 @@ class MusicPlayerViewController: UIViewController {
         trackArtworkImgView.image = artworkImg
         trackTitleLabel.text = currentTrack.title
         trackArtistLabel.text = currentTrack.artist
+        let thumbImg = commonFunctions.resizeImage(image: UIImage(systemName: "circle.fill")!, targetSize: CGSize(width: 10.0, height: 10.0))
+        timeProgressSlider.setThumbImage(thumbImg.maskWithColor(color: UIColor.lightGray), for: .normal)
+        UIView.animate(withDuration: 0.3) {
+            self.setUiElementsAlpha(alphaValue: 1)
+        }
         musicVolumeSlider.value = MusicPlayerViewController.INITIAL_VOLUME_SLIDER
     }
     
@@ -124,6 +131,19 @@ class MusicPlayerViewController: UIViewController {
         }
     }
     
+    private func setUiElementsAlpha(alphaValue: CGFloat) {
+        self.trackArtworkImgView.alpha = alphaValue
+        self.trackTitleLabel.alpha = alphaValue
+        self.trackArtistLabel.alpha = alphaValue
+        self.timeProgressSlider.alpha = alphaValue
+        self.currentTimeLabel.alpha = alphaValue * 0.5
+        self.remainingTimeLabel.alpha = alphaValue * 0.5
+        self.musicVolumeSlider.alpha = alphaValue
+        self.playPauseButton.alpha = alphaValue * 0.9
+        self.nextTrackButton.alpha = alphaValue * 0.9
+        self.previousTrackButton.alpha = alphaValue * 0.9
+    }
+    
     @IBAction func togglePlayPause(_ sender: UIButton) {
         if isPlaying {
             pauseTrack()
@@ -134,5 +154,11 @@ class MusicPlayerViewController: UIViewController {
     
     @IBAction func changeVolumeSlider(_ sender: UISlider) {
         audioPlayer.volume = sender.value
+    }
+    
+    @IBAction func setCurrentTrackTime(_ sender: UISlider) {
+        let newCurrentTimeSeconds = Float64(sender.value) * Float64(currentTrack.durationInSeconds)
+        let newCurrentTime = CMTimeMakeWithSeconds(newCurrentTimeSeconds, preferredTimescale: audioPlayer.currentTime().timescale)
+        audioPlayer.seek(to: newCurrentTime)
     }
 }
