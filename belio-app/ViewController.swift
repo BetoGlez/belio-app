@@ -81,6 +81,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return (musicLibraryList.count > 0)
+    }
+    
     private func initUiElements() {
         songCountLabel.text =  "\(musicLibraryList.count) songs"
         playButton.layer.cornerRadius = 5.0
