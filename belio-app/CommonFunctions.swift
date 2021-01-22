@@ -32,6 +32,11 @@ class CommonFunctions {
         }
         return musicLibraryList[newTrackIndex]
     }
+    
+    public func saveLyricToGeneralList(trackId: String, lyric: String) {
+        let trackIndex = musicLibraryList.firstIndex(where: { $0.id == trackId })!
+        musicLibraryList[trackIndex].lyrics = lyric
+    }
         
     public func convertSecondsToMinutesSeconds (seconds : Int) -> (String, String) {
         let sec = (seconds % 3600) % 60
@@ -65,6 +70,10 @@ class CommonFunctions {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
+    }
+    
+    public func replaceWhiteCharacters(stringToReplace: String) -> String {
+        return stringToReplace.replacingOccurrences(of: " ", with: "%20")
     }
 }
 

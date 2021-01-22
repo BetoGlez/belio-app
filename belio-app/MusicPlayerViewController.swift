@@ -14,6 +14,7 @@ class MusicPlayerViewController: UIViewController {
     
     private let commonFunctions = CommonFunctions();
     private var isPlaying = false;
+    private var isLyricsViewMode = false;
     private var audioPlayer: AVPlayer!
     private var timeObserverToken: Any?
     
@@ -28,12 +29,14 @@ class MusicPlayerViewController: UIViewController {
     @IBOutlet weak var previousTrackButton: UIButton!
     @IBOutlet weak var musicVolumeSlider: UISlider!
     @IBOutlet weak var searchLyricsButton: UIButton!
+    @IBOutlet weak var lyricsTextView: UITextView!
     
     public var currentTrack: MusicTrack = MusicTrack();
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        lyricsTextView.alpha = 0
         setUiElementsAlpha(alphaValue: 0)
         musicVolumeSlider.value = MusicPlayerViewController.INITIAL_VOLUME_SLIDER
     }
@@ -110,6 +113,10 @@ class MusicPlayerViewController: UIViewController {
         trackArtistLabel.text = currentTrackData.artist
         let thumbImg = commonFunctions.resizeImage(image: UIImage(systemName: "circle.fill")!, targetSize: CGSize(width: 10.0, height: 10.0))
         timeProgressSlider.setThumbImage(thumbImg.maskWithColor(color: UIColor.lightGray), for: .normal)
+        lyricsTextView.text = currentTrack.lyrics
+        lyricsTextView.layer.cornerRadius = 5.0
+        lyricsTextView.backgroundColor = UIColor.black
+        lyricsTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         UIView.animate(withDuration: 0.3) {
             self.setUiElementsAlpha(alphaValue: 1)
         }
@@ -120,6 +127,9 @@ class MusicPlayerViewController: UIViewController {
         audioPlayer.play()
         let buttonImg = UIImage(systemName: "pause.fill")
         playPauseButton.setImage(buttonImg, for: .normal)
+        if isLyricsViewMode {
+            toggleLyricsView()
+        }
         UIView.animate(withDuration: 0.25) {
             self.trackArtworkImgView.alpha = 1
         }
@@ -130,6 +140,9 @@ class MusicPlayerViewController: UIViewController {
         audioPlayer.pause()
         let buttonImg = UIImage(systemName: "play.fill")
         playPauseButton.setImage(buttonImg, for: .normal)
+        if isLyricsViewMode {
+            toggleLyricsView()
+        }
         UIView.animate(withDuration: 0.25) {
             self.trackArtworkImgView.alpha = 0.7
         }
@@ -150,6 +163,9 @@ class MusicPlayerViewController: UIViewController {
     }
     
     private func changeTrack(option: String) {
+        if isLyricsViewMode {
+            toggleLyricsView()
+        }
         var newCurrentTrack: MusicTrack;
         if option == "next" {
             newCurrentTrack = commonFunctions.getNewTrack(currentTrack: currentTrack, option: "next")
@@ -175,6 +191,66 @@ class MusicPlayerViewController: UIViewController {
         }
         
         initMusicPlayerData(currentTrackData: newCurrentTrack)
+    }
+    
+    private func toggleLyricsView() {
+        if !isLyricsViewMode {
+            setCurrentTrackLyricsData()
+            searchLyricsButton.setTitle("Hide lyrics", for: .normal)
+            trackArtworkImgView.alpha = 0
+            lyricsTextView.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                self.lyricsTextView.alpha = 0.8
+            }
+        } else {
+            searchLyricsButton.setTitle("Show lyrics", for: .normal)
+            trackArtworkImgView.alpha = 0
+            lyricsTextView.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                self.trackArtworkImgView.alpha = 1
+            }
+        }
+        isLyricsViewMode = !isLyricsViewMode
+    }
+    
+    private func setCurrentTrackLyricsData() {
+        if currentTrack.lyrics.isEmpty {
+            let composedRequestUrl: String = "https://api.lyrics.ovh/v1/\(currentTrack.artist)/\(currentTrack.title)"
+            let url = URL(string: commonFunctions.replaceWhiteCharacters(stringToReplace: composedRequestUrl))
+            var request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+
+                    let lyricData = Data(dataString.utf8)
+
+                    do {
+                        if let json = try JSONSerialization.jsonObject(with: lyricData, options: []) as? [String: Any] {
+                            DispatchQueue.main.async {
+                                var currentTrackLyrics = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
+                                if let trackLyrics = json["lyrics"] as? String {
+                                    if !trackLyrics.isEmpty {
+                                        currentTrackLyrics = trackLyrics
+                                        self.currentTrack.lyrics = trackLyrics
+                                        self.commonFunctions.saveLyricToGeneralList(trackId: self.currentTrack.id, lyric: trackLyrics)
+                                    }
+                                }
+                                self.lyricsTextView.text = currentTrackLyrics
+                            }
+                        }
+                    } catch let error as NSError {
+                        print("Failed to load: \(error.localizedDescription)")
+                        DispatchQueue.main.async {
+                            self.lyricsTextView.text = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
+                        }
+                    }
+                }
+            }
+
+            task.resume()
+        } else {
+            self.lyricsTextView.text = currentTrack.lyrics
+        }
     }
     
     @IBAction func togglePlayPause(_ sender: UIButton) {
@@ -209,5 +285,8 @@ class MusicPlayerViewController: UIViewController {
     
     @IBAction func onEndChangingCurrentTrackTime(_ sender: UISlider) {
         playTrack()
+    }
+    @IBAction func searchLyrics(_ sender: UIButton) {
+        toggleLyricsView()
     }
 }

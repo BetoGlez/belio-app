@@ -246,9 +246,26 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urc-ss-8lH">
-                                <rect key="frame" x="151" y="770" width="88" height="30"/>
-                                <state key="normal" title="Search lyrics"/>
+                                <rect key="frame" x="156" y="770" width="78" height="30"/>
+                                <state key="normal" title="Show lyrics"/>
+                                <connections>
+                                    <action selector="searchLyrics:" destination="mze-19-Kr9" eventType="touchUpInside" id="tzE-kr-We1"/>
+                                </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" allowsEditingTextAttributes="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1H-um-ZAU" userLabel="Lyrics Text View">
+                                <rect key="frame" x="20" y="108" width="350" height="290"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Track Lyrics">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="24" name="Helvetica-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1L9-Rb-U7v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -256,17 +273,22 @@
                             <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="3Op-Zp-Eln" secondAttribute="trailing" constant="20" id="1vQ-FC-a2Y"/>
                             <constraint firstItem="Urc-ss-8lH" firstAttribute="centerX" secondItem="RwT-Dw-RVq" secondAttribute="centerX" id="BZT-mG-vhz"/>
                             <constraint firstItem="Urc-ss-8lH" firstAttribute="top" secondItem="3Op-Zp-Eln" secondAttribute="bottom" constant="30" id="BeR-GL-5Bq"/>
+                            <constraint firstItem="H1H-um-ZAU" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="C8F-sG-gPy"/>
+                            <constraint firstItem="H1H-um-ZAU" firstAttribute="top" secondItem="1L9-Rb-U7v" secondAttribute="top" constant="20" id="IrF-1W-SRE"/>
                             <constraint firstItem="EHJ-wj-EPJ" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="OLv-1n-vva"/>
                             <constraint firstItem="3Op-Zp-Eln" firstAttribute="leading" secondItem="1L9-Rb-U7v" secondAttribute="leading" constant="20" id="PcX-io-tEZ"/>
                             <constraint firstItem="3Op-Zp-Eln" firstAttribute="top" secondItem="EHJ-wj-EPJ" secondAttribute="bottom" constant="20" id="QKU-e3-SOS"/>
                             <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="EHJ-wj-EPJ" secondAttribute="trailing" constant="20" id="cH3-ph-BdU"/>
                             <constraint firstItem="1L9-Rb-U7v" firstAttribute="bottom" secondItem="Urc-ss-8lH" secondAttribute="bottom" constant="10" id="cU1-Tt-koY"/>
                             <constraint firstItem="EHJ-wj-EPJ" firstAttribute="top" secondItem="1L9-Rb-U7v" secondAttribute="top" constant="20" id="hSQ-XU-BH1"/>
+                            <constraint firstItem="1L9-Rb-U7v" firstAttribute="trailing" secondItem="H1H-um-ZAU" secondAttribute="trailing" constant="20" id="mip-rJ-fGI"/>
+                            <constraint firstItem="3Op-Zp-Eln" firstAttribute="top" secondItem="H1H-um-ZAU" secondAttribute="bottom" constant="30" id="unD-wE-ELI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xz2-97-5nA"/>
                     <connections>
                         <outlet property="currentTimeLabel" destination="mJX-cS-i8E" id="A2b-xf-grY"/>
+                        <outlet property="lyricsTextView" destination="H1H-um-ZAU" id="ETU-0g-LP9"/>
                         <outlet property="musicVolumeSlider" destination="zYd-zv-ptW" id="cZn-Zn-YCY"/>
                         <outlet property="nextTrackButton" destination="hYI-41-RdM" id="hr9-aB-HPp"/>
                         <outlet property="playPauseButton" destination="JNC-uk-Y3R" id="Ns0-Vf-swp"/>

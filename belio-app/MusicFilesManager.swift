@@ -18,6 +18,7 @@ struct MusicTrack {
     var durationInSeconds: Int = -1
     var artwork: NSData? = nil
     var soundpathURL = URL(string: "")
+    var lyrics = ""
 }
 
 class MusicFilesManager {
