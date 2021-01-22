@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var shuffleButton: UIButton!
         
-    private static let MP3_FILE_EXTENSION = "mp3"
+    private static let SUPPORTED_FILE_EXTENSIONS = ["mp3", "ac3", "wav", ".au", "acc", "iff", "m4a"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,12 +109,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
         do {
             let documentsFiles = try fileManager.contentsOfDirectory(atPath: documentsPath.path)
-            let musicFiles = documentsFiles.filter { $0.suffix(3) == ViewController.MP3_FILE_EXTENSION }
+            let musicFiles = documentsFiles.filter { ViewController.SUPPORTED_FILE_EXTENSIONS.contains(String($0.suffix(3))) }
             if musicFiles.count > 0 {
                 let musicFilesManager = MusicFilesManager()
                 musicLibraryList = musicFilesManager.composeMusicLibraryList(fileTracks: musicFiles, documentsPath: documentsPath)
             } else {
                 print("There are no music files at the moment")
+                let alert = UIAlertController(title: "No music found", message: "Please add some music with the supported formats (mp3, ac3, wav, au, acc, aiff or m4a) and restart the app",
+                preferredStyle: .alert)
+                present(alert, animated: true)
             }
         } catch {
             print("Error while enumerating files")

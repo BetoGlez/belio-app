@@ -217,37 +217,40 @@ class MusicPlayerViewController: UIViewController {
         if currentTrack.lyrics.isEmpty {
             let composedRequestUrl: String = "https://api.lyrics.ovh/v1/\(currentTrack.artist)/\(currentTrack.title)"
             let url = URL(string: commonFunctions.replaceWhiteCharacters(stringToReplace: composedRequestUrl))
-            var request = URLRequest(url: url!)
-            request.httpMethod = "GET"
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+            if url != nil {
+                var request = URLRequest(url: url!)
+                request.httpMethod = "GET"
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
 
-                    let lyricData = Data(dataString.utf8)
+                        let lyricData = Data(dataString.utf8)
 
-                    do {
-                        if let json = try JSONSerialization.jsonObject(with: lyricData, options: []) as? [String: Any] {
-                            DispatchQueue.main.async {
-                                var currentTrackLyrics = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
-                                if let trackLyrics = json["lyrics"] as? String {
-                                    if !trackLyrics.isEmpty {
-                                        currentTrackLyrics = trackLyrics
-                                        self.currentTrack.lyrics = trackLyrics
-                                        self.commonFunctions.saveLyricToGeneralList(trackId: self.currentTrack.id, lyric: trackLyrics)
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: lyricData, options: []) as? [String: Any] {
+                                DispatchQueue.main.async {
+                                    var currentTrackLyrics = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
+                                    if let trackLyrics = json["lyrics"] as? String {
+                                        if !trackLyrics.isEmpty {
+                                            currentTrackLyrics = trackLyrics
+                                            self.currentTrack.lyrics = trackLyrics
+                                            self.commonFunctions.saveLyricToGeneralList(trackId: self.currentTrack.id, lyric: trackLyrics)
+                                        }
                                     }
+                                    self.lyricsTextView.text = currentTrackLyrics
                                 }
-                                self.lyricsTextView.text = currentTrackLyrics
                             }
-                        }
-                    } catch let error as NSError {
-                        print("Failed to load: \(error.localizedDescription)")
-                        DispatchQueue.main.async {
-                            self.lyricsTextView.text = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
+                        } catch let error as NSError {
+                            print("Failed to load: \(error.localizedDescription)")
+                            DispatchQueue.main.async {
+                                self.lyricsTextView.text = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
+                            }
                         }
                     }
                 }
+                task.resume()
+            } else {
+                self.lyricsTextView.text = "\n\n No lyrics found for \n\n \(self.currentTrack.title) \n \(self.currentTrack.artist)"
             }
-
-            task.resume()
         } else {
             self.lyricsTextView.text = currentTrack.lyrics
         }
