@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var shuffleButton: UIButton!
         
-    private static let SUPPORTED_FILE_EXTENSIONS = ["mp3", "ac3", "wav", ".au", "acc", "iff", "m4a"]
+    private static let SUPPORTED_FILE_EXTENSIONS = ["mp3", "ac3", "wav", ".au", "aac", "iff", "m4a"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
